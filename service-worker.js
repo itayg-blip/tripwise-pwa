@@ -1,6 +1,7 @@
-const CACHE='tripwise-v14';
+const CACHE='tripwise-v20';
 const CORE=[
   './','./index.html','./manifest.webmanifest','./icon.svg',
+  './firebase-config.js','./firebase-app-compat.js','./firebase-auth-compat.js','./firebase-firestore-compat.js',
   './google-sans-400.ttf','./google-sans-500.ttf','./google-sans-700.ttf',
   './mexico.png','./guatemala.png','./japan.png','./thailand.png','./vietnam.png','./italy.png',
   './tesseract.min.js','./worker.min.js','./eng.traineddata.gz',
