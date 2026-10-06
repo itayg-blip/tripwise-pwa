@@ -1,4 +1,4 @@
-const CACHE='tripwise-v20';
+const CACHE='tripwise-v21';
 const CORE=[
   './','./index.html','./manifest.webmanifest','./icon.svg',
   './firebase-config.js','./firebase-app-compat.js','./firebase-auth-compat.js','./firebase-firestore-compat.js',
@@ -33,12 +33,4 @@ self.addEventListener('fetch',event=>{
     if(response.ok)caches.open(CACHE).then(cache=>cache.put(request,response.clone()));
     return response;
   })));
-});
-
-self.addEventListener('notificationclick',event=>{
-  event.notification.close();
-  event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(windows=>{
-    const existing=windows.find(client=>'focus' in client);
-    return existing?existing.focus():clients.openWindow('./');
-  }));
 });
