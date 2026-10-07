@@ -1,6 +1,6 @@
 # TripWise QA report
 
-Date: 2026-10-05
+Date: 2026-10-07
 
 ## Verified flows
 
@@ -24,6 +24,12 @@ Date: 2026-10-05
 - Account UI: profile shortcut, user card, sync state, and sign-out are responsive at a 390 × 844 viewport.
 - Firebase assets and configuration load successfully over HTTP and are included in the PWA cache manifest.
 - OCR regression after the authentication changes: the supplied bank screenshot still produced six editable transactions; no browser console errors were emitted.
+- Retroactive expenses: the expense form defaults to today, accepts earlier dates, rejects future dates, and sorts saved expenses chronologically.
+- Existing expenses open in edit mode with amount, currency, category, payer, description, and original date restored.
+- Multi-day split: MXN 100 across three days previews MXN 33.33 per day and allocates 33.33 + 33.33 + 33.34 so the total remains exact.
+- Zero-decimal split: 100 JPY across three days allocates 33 + 33 + 34 with no rounding loss.
+- Split groups reopen as one editable expense; saving replaces the complete group instead of duplicating its daily entries.
+- iOS install assets: 180 px Apple touch icon plus 192 px and 512 px manifest icons are available and cached offline.
 
 ## Fixes included
 
@@ -40,6 +46,9 @@ Date: 2026-10-05
 - Added per-user local storage plus Cloud Firestore real-time state sync and offline write queueing.
 - Added a per-user Firestore interaction log with descriptive event names and restrictive security rules.
 - Fixed authentication status copy after sign-out and included all Firebase runtime files in the offline cache.
+- Added retroactive expense creation and editing with a date-aware modal and Firestore history events.
+- Added even multi-day expense allocation with exact remainder handling and editable split-group metadata.
+- Added an iOS-ready Apple touch icon and standalone PWA manifest metadata for home-screen installation.
 
 ## Platform note
 

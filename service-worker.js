@@ -1,6 +1,6 @@
-const CACHE='tripwise-v21';
+const CACHE='tripwise-v22';
 const CORE=[
-  './','./index.html','./manifest.webmanifest','./icon.svg',
+  './','./index.html','./manifest.webmanifest','./icon.svg','./apple-touch-icon.png','./icon-192.png','./icon-512.png',
   './firebase-config.js','./firebase-app-compat.js','./firebase-auth-compat.js','./firebase-firestore-compat.js',
   './google-sans-400.ttf','./google-sans-500.ttf','./google-sans-700.ttf',
   './mexico.png','./guatemala.png','./japan.png','./thailand.png','./vietnam.png','./italy.png',
@@ -33,4 +33,12 @@ self.addEventListener('fetch',event=>{
     if(response.ok)caches.open(CACHE).then(cache=>cache.put(request,response.clone()));
     return response;
   })));
+});
+
+self.addEventListener('notificationclick',event=>{
+  event.notification.close();
+  event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(windows=>{
+    const existing=windows.find(client=>'focus' in client);
+    return existing?existing.focus():clients.openWindow('./');
+  }));
 });
